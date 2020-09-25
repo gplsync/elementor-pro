@@ -3,7 +3,6 @@
  * Plugin Name: Elementor Pro
  * Description: Elementor Pro brings a whole new design experience to WordPress. Customize your entire theme: header, footer, single post, archive and 404 page, all with one page builder.
  * Plugin URI: https://elementor.com/
- * GitHub Plugin URI: https://github.com/gplsync/elementor-pro/
  * Author: Elementor.com
  * Version: 3.0.5
  * Author URI: https://elementor.com/
@@ -26,8 +25,6 @@ define( 'ELEMENTOR_PRO_MODULES_PATH', ELEMENTOR_PRO_PATH . 'modules/' );
 define( 'ELEMENTOR_PRO_URL', plugins_url( '/', ELEMENTOR_PRO__FILE__ ) );
 define( 'ELEMENTOR_PRO_ASSETS_URL', ELEMENTOR_PRO_URL . 'assets/' );
 define( 'ELEMENTOR_PRO_MODULES_URL', ELEMENTOR_PRO_URL . 'modules/' );
-update_option( 'elementor_pro_license_key', 'activated' );
-update_option( '_elementor_pro_license_data', [ 'timeout' => strtotime( '+12 hours', current_time( 'timestamp' ) ),'value' => json_encode( [ 'license' => 'valid', 'expires' => 'lifetime','renewal_discount' => '', 'subscriptions' => 'enable' ] ) ] );
 
 /**
  * Load gettext translate for our text domain.

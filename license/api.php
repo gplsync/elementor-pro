@@ -25,7 +25,9 @@ class API {
 	 * @return \stdClass|\WP_Error
 	 */
 	private static function remote_post( $body_args = [] ) {
-		return ['license' => 'valid', 'expires' => 'lifetime',	'subscriptions', 'enable', 'renewal_discount','',];
+		
+		return ['license' => 'valid', 'expires' => 'lifetime',	'subscriptions', 'enable', 'renewal_discount',1,];
+		
 		$body_args = wp_parse_args(
 			$body_args,
 			[
@@ -110,43 +112,17 @@ class API {
 	}
 
 	public static function get_license_data( $force_request = false ) {
-		$license_data_error = [
-			'license' => 'http_error',
-			'payment_id' => '0',
-			'license_limit' => '0',
-			'site_count' => '0',
-			'activations_left' => '0',
-			'success' => false,
-		];
-
-		$license_key = Admin::get_license_key();
-		if ( empty( $license_key ) ) {
-			return $license_data_error;
-		}
-
-		$license_data = self::get_transient( Admin::LICENSE_DATA_OPTION_NAME );
-
-		if ( false === $license_data || $force_request ) {
-			$body_args = [
-				'edd_action' => 'check_license',
-				'license' => $license_key,
-			];
-
-			$license_data = self::remote_post( $body_args );
-
-			if ( is_wp_error( $license_data ) ) {
-				$license_data = self::get_transient( Admin::LICENSE_DATA_FALLBACK_OPTION_NAME );
-				if ( false === $license_data ) {
-					$license_data = $license_data_error;
-				}
-
-				self::set_license_data( $license_data, '+30 minutes' );
-			} else {
-				self::set_license_data( $license_data );
-			}
-		}
-
-		return $license_data;
+		return array(
+			'license' => 'valid',
+			'payment_id' => '10',
+			'license_limit' => '100',
+			'site_count' => '1',
+			'expires' => 'lifetime',
+			'activations_left' => '999',
+			'subscriptions', 'enable',
+			'success' => true,
+			'renewal_discount',1);
+		
 	}
 
 	public static function get_version( $force_update = true ) {

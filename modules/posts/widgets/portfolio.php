@@ -58,7 +58,7 @@ class Portfolio extends Base_Widget {
 		return $this->_query;
 	}
 
-	protected function _register_controls() {
+	protected function register_controls() {
 		$this->register_query_section_controls();
 	}
 

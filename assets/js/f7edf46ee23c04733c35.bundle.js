@@ -1,9 +1,9 @@
-/*! elementor-pro - v3.0.10 - 20-01-2021 */
-(self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["slides"],{
+/*! elementor-pro - v3.1.0 - 14-02-2021 */
+(self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["modules_carousel_assets_js_frontend_handlers_base_js"],{
 
-/***/ "../modules/slides/assets/js/frontend/handlers/slides.js":
+/***/ "../modules/carousel/assets/js/frontend/handlers/base.js":
 /*!***************************************************************!*\
-  !*** ../modules/slides/assets/js/frontend/handlers/slides.js ***!
+  !*** ../modules/carousel/assets/js/frontend/handlers/base.js ***!
   \***************************************************************/
 /***/ ((__unused_webpack_module, exports, __webpack_require__) => {
 
@@ -26,6 +26,8 @@ __webpack_require__(/*! regenerator-runtime/runtime */ "../node_modules/regenera
 
 var _asyncToGenerator2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/asyncToGenerator */ "../node_modules/@babel/runtime-corejs2/helpers/asyncToGenerator.js"));
 
+__webpack_require__(/*! core-js/modules/es6.regexp.match */ "../node_modules/core-js/modules/es6.regexp.match.js");
+
 __webpack_require__(/*! core-js/modules/es6.array.find */ "../node_modules/core-js/modules/es6.array.find.js");
 
 var _classCallCheck2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/classCallCheck */ "../node_modules/@babel/runtime-corejs2/helpers/classCallCheck.js"));
@@ -36,35 +38,28 @@ var _inherits2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-c
 
 var _createSuper2 = _interopRequireDefault(__webpack_require__(/*! @babel/runtime-corejs2/helpers/createSuper */ "../node_modules/@babel/runtime-corejs2/helpers/createSuper.js"));
 
-var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
-  (0, _inherits2.default)(SlidesHandler, _elementorModules$fro);
+var CarouselBase = /*#__PURE__*/function (_elementorModules$fro) {
+  (0, _inherits2.default)(CarouselBase, _elementorModules$fro);
 
-  var _super = (0, _createSuper2.default)(SlidesHandler);
+  var _super = (0, _createSuper2.default)(CarouselBase);
 
-  function SlidesHandler() {
-    (0, _classCallCheck2.default)(this, SlidesHandler);
+  function CarouselBase() {
+    (0, _classCallCheck2.default)(this, CarouselBase);
     return _super.apply(this, arguments);
   }
 
-  (0, _createClass2.default)(SlidesHandler, [{
+  (0, _createClass2.default)(CarouselBase, [{
     key: "getDefaultSettings",
     value: function getDefaultSettings() {
       return {
         selectors: {
-          slider: '.elementor-slides-wrapper',
-          slide: '.swiper-slide',
-          slideInnerContents: '.swiper-slide-contents',
-          activeSlide: '.swiper-slide-active',
-          activeDuplicate: '.swiper-slide-duplicate-active'
+          swiperContainer: '.elementor-main-swiper',
+          swiperSlide: '.swiper-slide'
         },
-        classes: {
-          animated: 'animated',
-          kenBurnsActive: 'elementor-ken-burns--active',
-          slideBackground: 'swiper-slide-bg'
-        },
-        attributes: {
-          dataSliderOptions: 'slider_options',
-          dataAnimation: 'animation'
+        slidesPerView: {
+          desktop: 3,
+          tablet: 2,
+          mobile: 1
         }
       };
     }
@@ -73,50 +68,104 @@ var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
     value: function getDefaultElements() {
       var selectors = this.getSettings('selectors'),
           elements = {
-        $swiperContainer: this.$element.find(selectors.slider)
+        $swiperContainer: this.$element.find(selectors.swiperContainer)
       };
-      elements.$slides = elements.$swiperContainer.find(selectors.slide);
+      elements.$slides = elements.$swiperContainer.find(selectors.swiperSlide);
       return elements;
+    }
+  }, {
+    key: "getEffect",
+    value: function getEffect() {
+      return this.getElementSettings('effect');
+    }
+  }, {
+    key: "getDeviceSlidesPerView",
+    value: function getDeviceSlidesPerView(device) {
+      var slidesPerViewKey = 'slides_per_view' + ('desktop' === device ? '' : '_' + device);
+      return Math.min(this.getSlidesCount(), +this.getElementSettings(slidesPerViewKey) || this.getSettings('slidesPerView')[device]);
+    }
+  }, {
+    key: "getSlidesPerView",
+    value: function getSlidesPerView(device) {
+      if ('slide' === this.getEffect()) {
+        return this.getDeviceSlidesPerView(device);
+      }
+
+      return 1;
+    }
+  }, {
+    key: "getDeviceSlidesToScroll",
+    value: function getDeviceSlidesToScroll(device) {
+      var slidesToScrollKey = 'slides_to_scroll' + ('desktop' === device ? '' : '_' + device);
+      return Math.min(this.getSlidesCount(), +this.getElementSettings(slidesToScrollKey) || 1);
+    }
+  }, {
+    key: "getSlidesToScroll",
+    value: function getSlidesToScroll(device) {
+      if ('slide' === this.getEffect()) {
+        return this.getDeviceSlidesToScroll(device);
+      }
+
+      return 1;
+    }
+  }, {
+    key: "getSpaceBetween",
+    value: function getSpaceBetween(device) {
+      var propertyName = 'space_between';
+
+      if (device && 'desktop' !== device) {
+        propertyName += '_' + device;
+      }
+
+      return this.getElementSettings(propertyName).size || 0;
     }
   }, {
     key: "getSwiperOptions",
     value: function getSwiperOptions() {
-      var _this = this;
-
-      var elementSettings = this.getElementSettings(),
-          swiperOptions = {
+      var elementSettings = this.getElementSettings();
+      var swiperOptions = {
         grabCursor: true,
         initialSlide: this.getInitialSlide(),
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-        loop: 'yes' === elementSettings.infinite,
-        speed: elementSettings.transition_speed,
-        effect: elementSettings.transition,
-        observeParents: true,
-        observer: true,
-        handleElementorBreakpoints: true,
-        on: {
-          slideChange: function slideChange() {
-            _this.handleKenBurns();
-          }
-        }
+        slidesPerView: this.getSlidesPerView('desktop'),
+        slidesPerGroup: this.getSlidesToScroll('desktop'),
+        spaceBetween: this.getSpaceBetween(),
+        loop: 'yes' === elementSettings.loop,
+        speed: elementSettings.speed,
+        effect: this.getEffect(),
+        preventClicksPropagation: false,
+        slideToClickedSlide: true,
+        handleElementorBreakpoints: true
       };
-      var showArrows = 'arrows' === elementSettings.navigation || 'both' === elementSettings.navigation,
-          pagination = 'dots' === elementSettings.navigation || 'both' === elementSettings.navigation;
 
-      if (showArrows) {
+      if (elementSettings.show_arrows) {
         swiperOptions.navigation = {
           prevEl: '.elementor-swiper-button-prev',
           nextEl: '.elementor-swiper-button-next'
         };
       }
 
-      if (pagination) {
+      if (elementSettings.pagination) {
         swiperOptions.pagination = {
           el: '.swiper-pagination',
-          type: 'bullets',
+          type: elementSettings.pagination,
           clickable: true
         };
+      }
+
+      if ('cube' !== this.getEffect()) {
+        var breakpointsSettings = {},
+            breakpoints = elementorFrontend.config.breakpoints;
+        breakpointsSettings[breakpoints.lg - 1] = {
+          slidesPerView: this.getSlidesPerView('tablet'),
+          slidesPerGroup: this.getSlidesToScroll('tablet'),
+          spaceBetween: this.getSpaceBetween('tablet')
+        };
+        breakpointsSettings[breakpoints.md - 1] = {
+          slidesPerView: this.getSlidesPerView('mobile'),
+          slidesPerGroup: this.getSlidesToScroll('mobile'),
+          spaceBetween: this.getSpaceBetween('mobile')
+        };
+        swiperOptions.breakpoints = breakpointsSettings;
       }
 
       if (!this.isEdit && elementSettings.autoplay) {
@@ -126,90 +175,66 @@ var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
         };
       }
 
-      if (true === swiperOptions.loop) {
-        swiperOptions.loopedSlides = this.getSlidesCount();
-      }
-
-      if ('fade' === swiperOptions.effect) {
-        swiperOptions.fadeEffect = {
-          crossFade: true
-        };
-      }
-
       return swiperOptions;
     }
   }, {
-    key: "initSingleSlideAnimations",
-    value: function initSingleSlideAnimations() {
-      var settings = this.getSettings(),
-          animation = this.elements.$swiperContainer.data(settings.attributes.dataAnimation);
-      this.elements.$swiperContainer.find('.' + settings.classes.slideBackground).addClass(settings.classes.kenBurnsActive); // If there is an animation, get the container of the slide's inner contents and add the animation classes to it
+    key: "updateSpaceBetween",
+    value: function updateSpaceBetween(propertyName) {
+      var deviceMatch = propertyName.match('space_between_(.*)'),
+          device = deviceMatch ? deviceMatch[1] : 'desktop',
+          newSpaceBetween = this.getSpaceBetween(device),
+          breakpoints = elementorFrontend.config.breakpoints;
 
-      if (animation) {
-        this.elements.$swiperContainer.find(settings.selectors.slideInnerContents).addClass(settings.classes.animated + ' ' + animation);
+      if ('desktop' !== device) {
+        var breakpointDictionary = {
+          tablet: breakpoints.lg - 1,
+          mobile: breakpoints.md - 1
+        };
+        this.swiper.params.breakpoints[breakpointDictionary[device]].spaceBetween = newSpaceBetween;
+      } else {
+        this.swiper.params.spaceBetween = newSpaceBetween;
       }
+
+      this.swiper.params.spaceBetween = newSpaceBetween;
+      this.swiper.update();
     }
   }, {
-    key: "initSlider",
+    key: "onInit",
     value: function () {
-      var _initSlider = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
-        var $slider, settings, elementSettings, animation, Swiper;
+      var _onInit = (0, _asyncToGenerator2.default)( /*#__PURE__*/_regenerator.default.mark(function _callee() {
+        var elementSettings,
+            Swiper,
+            _args = arguments;
         return _regenerator.default.wrap(function _callee$(_context) {
           while (1) {
             switch (_context.prev = _context.next) {
               case 0:
-                $slider = this.elements.$swiperContainer, settings = this.getSettings(), elementSettings = this.getElementSettings(), animation = $slider.data(settings.attributes.dataAnimation);
+                elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, _args);
+                elementSettings = this.getElementSettings();
 
-                if ($slider.length) {
-                  _context.next = 3;
-                  break;
-                }
-
-                return _context.abrupt("return");
-
-              case 3:
                 if (!(1 >= this.getSlidesCount())) {
-                  _context.next = 5;
+                  _context.next = 4;
                   break;
                 }
 
                 return _context.abrupt("return");
 
-              case 5:
+              case 4:
                 Swiper = elementorFrontend.utils.swiper;
-                _context.next = 8;
-                return new Swiper($slider, this.getSwiperOptions());
+                _context.next = 7;
+                return new Swiper(this.elements.$swiperContainer, this.getSwiperOptions());
 
-              case 8:
+              case 7:
                 this.swiper = _context.sent;
-                // Expose the swiper instance in the frontend
-                $slider.data('swiper', this.swiper); // The Ken Burns effect will only apply on the specific slides that toggled the effect ON,
-                // since it depends on an additional class besides 'elementor-ken-burns--active'
 
-                this.handleKenBurns();
-
-                if (elementSettings.pause_on_hover) {
+                if ('yes' === elementSettings.pause_on_hover) {
                   this.togglePauseOnHover(true);
-                }
+                } // Expose the swiper instance in the frontend
 
-                if (animation) {
-                  _context.next = 14;
-                  break;
-                }
 
-                return _context.abrupt("return");
+                this.elements.$swiperContainer.data('swiper', this.swiper);
 
-              case 14:
-                this.swiper.on('slideChangeTransitionStart', function () {
-                  var $sliderContent = $slider.find(settings.selectors.slideInnerContents);
-                  $sliderContent.removeClass(settings.classes.animated + ' ' + animation).hide();
-                });
-                this.swiper.on('slideChangeTransitionEnd', function () {
-                  var $currentSlide = $slider.find(settings.selectors.slideInnerContents);
-                  $currentSlide.show().addClass(settings.classes.animated + ' ' + animation);
-                });
-
-              case 16:
+              case 10:
               case "end":
                 return _context.stop();
             }
@@ -217,24 +242,12 @@ var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
         }, _callee, this);
       }));
 
-      function initSlider() {
-        return _initSlider.apply(this, arguments);
+      function onInit() {
+        return _onInit.apply(this, arguments);
       }
 
-      return initSlider;
+      return onInit;
     }()
-  }, {
-    key: "onInit",
-    value: function onInit() {
-      elementorModules.frontend.handlers.Base.prototype.onInit.apply(this, arguments);
-
-      if (2 > this.getSlidesCount()) {
-        this.initSingleSlideAnimations();
-        return;
-      }
-
-      this.initSlider();
-    }
   }, {
     key: "getChangeableProperties",
     value: function getChangeableProperties() {
@@ -243,7 +256,8 @@ var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
         pause_on_hover: 'pauseOnHover',
         pause_on_interaction: 'disableOnInteraction',
         autoplay_speed: 'delay',
-        transition_speed: 'speed'
+        speed: 'speed',
+        width: 'width'
       };
     }
   }, {
@@ -304,6 +318,24 @@ var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
         return;
       }
 
+      if (0 === propertyName.indexOf('width')) {
+        this.swiper.update(); // If there is another thumbs slider, like in the Media Carousel widget.
+
+        if (this.thumbsSwiper) {
+          this.thumbsSwiper.update();
+        }
+
+        return;
+      } // This is for handling the responsive control 'space_between'.
+      // Responsive controls require a separate way of handling, and some currently don't work
+      // (Swiper bug, currently exists in v5.3.6) TODO: update Swiper when bug is fixed and handle responsive controls
+
+
+      if (0 === propertyName.indexOf('space_between')) {
+        this.updateSpaceBetween(propertyName);
+        return;
+      }
+
       var changeableProperties = this.getChangeableProperties();
 
       if (changeableProperties.hasOwnProperty(propertyName)) {
@@ -322,12 +354,12 @@ var SlidesHandler = /*#__PURE__*/function (_elementorModules$fro) {
       }
     }
   }]);
-  return SlidesHandler;
+  return CarouselBase;
 }(elementorModules.frontend.handlers.SwiperBase);
 
-exports.default = SlidesHandler;
+exports.default = CarouselBase;
 
 /***/ })
 
 }]);
-//# sourceMappingURL=slides.6e27a523e2ff34d8a4e4.bundle.js.map
+//# sourceMappingURL=f7edf46ee23c04733c35.bundle.js.map

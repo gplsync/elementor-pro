@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.0.10 - 20-01-2021 */
+/*! elementor-pro - v3.1.0 - 14-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["table-of-contents"],{
 
 /***/ "../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js":

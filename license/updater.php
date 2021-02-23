@@ -147,6 +147,10 @@ class Updater {
 		if ( empty( $api_request_transient ) ) {
 			$api_response = API::get_version();
 
+			if ( is_wp_error( $api_response ) ) {
+				return $_data;
+			}
+
 			$api_request_transient = new \stdClass();
 
 			$api_request_transient->name = 'Elementor Pro';

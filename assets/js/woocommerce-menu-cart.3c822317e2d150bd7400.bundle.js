@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["woocommerce-menu-cart"],{
 
 /***/ "../modules/woocommerce/assets/js/frontend/handlers/menu-cart.js":
@@ -104,12 +104,12 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     $closeButton.on('click', function () {
       _this.removeAttributesOnHide();
     });
-    elementorFrontend.elements.$document.keyup(function (event) {
+    elementorFrontend.elements.$document.on('keyup', function (event) {
       var ESC_KEY = 27;
 
       if (ESC_KEY === event.keyCode) {
         if ($container.hasClass(classes.isShown)) {
-          $container.click();
+          $container.trigger('click');
         }
       }
     });
@@ -121,4 +121,4 @@ exports.default = _default;
 /***/ })
 
 }]);
-//# sourceMappingURL=woocommerce-menu-cart.e78271ddd87116469809.bundle.js.map
+//# sourceMappingURL=woocommerce-menu-cart.3c822317e2d150bd7400.bundle.js.map

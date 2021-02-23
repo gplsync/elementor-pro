@@ -134,8 +134,6 @@ class Code_Highlight extends Base_Widget {
 			[
 				'label' => __( 'Line Numbers', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'elementor-pro' ),
-				'label_off' => __( 'Hide', 'elementor-pro' ),
 				'return_value' => 'line-numbers',
 				'default' => 'line-numbers',
 			]
@@ -146,8 +144,8 @@ class Code_Highlight extends Base_Widget {
 			[
 				'label' => __( 'Copy to Clipboard', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'elementor-pro' ),
-				'label_off' => __( 'Hide', 'elementor-pro' ),
+				'label_on' => __( 'On', 'elementor-pro' ),
+				'label_off' => __( 'Off', 'elementor-pro' ),
 				'return_value' => 'copy-to-clipboard',
 				'default' => 'copy-to-clipboard',
 			]
@@ -168,8 +166,8 @@ class Code_Highlight extends Base_Widget {
 			[
 				'label' => __( 'Word Wrap', 'elementor-pro' ),
 				'type' => Controls_Manager::SWITCHER,
-				'label_on' => __( 'Show', 'elementor-pro' ),
-				'label_off' => __( 'Hide', 'elementor-pro' ),
+				'label_on' => __( 'On', 'elementor-pro' ),
+				'label_off' => __( 'Off', 'elementor-pro' ),
 				'return_value' => 'word-wrap',
 				'default' => '',
 			]

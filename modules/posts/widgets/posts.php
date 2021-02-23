@@ -28,7 +28,7 @@ class Posts extends Posts_Base {
 	}
 
 	public function on_import( $element ) {
-		if ( ! get_post_type_object( $element['settings']['posts_post_type'] ) ) {
+		if ( isset( $element['settings']['posts_post_type'] ) && ! get_post_type_object( $element['settings']['posts_post_type'] ) ) {
 			$element['settings']['posts_post_type'] = 'post';
 		}
 

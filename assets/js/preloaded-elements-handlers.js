@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["preloaded-elements-handlers"],{
 
 /***/ "../node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js":
@@ -3672,7 +3672,7 @@ var FormSteps = /*#__PURE__*/function (_elementorModules$fro) {
           classes = _this$getSettings16.classes;
 
       this.elements.$stepWrapper.eq(this.state.currentStep).addClass(classes.hidden);
-      this.elements.$stepWrapper.eq(index).removeClass(classes.hidden).children(this.getSettings('selectors.fieldGroup')).first().find(':input').first().focus();
+      this.elements.$stepWrapper.eq(index).removeClass(classes.hidden).children(this.getSettings('selectors.fieldGroup')).first().find(':input').first().trigger('focus');
     }
   }, {
     key: "isFieldsValid",
@@ -3722,7 +3722,7 @@ var FormSteps = /*#__PURE__*/function (_elementorModules$fro) {
         return classes.indicator + '--state-' + state;
       });
 
-      this.elements.$indicators.removeClass(stateClasses.join(' ')).not(':eq(0)').addClass(classes.indicatorInactive);
+      this.elements.$indicators.removeClass(stateClasses.join(' ')).not(this.elements.$indicators.eq(0)).addClass(classes.indicatorInactive);
       this.elements.$indicators.eq(0).addClass(classes.indicatorActive);
     }
   }, {
@@ -3979,7 +3979,7 @@ var Recaptcha = /*#__PURE__*/function (_elementorModules$fro) {
             $form.append(_this2.elements.$recaptchaResponse);
           }
 
-          $form.submit();
+          $form.trigger('submit');
         });
       });
     }
@@ -4881,7 +4881,7 @@ var lottieHandler = /*#__PURE__*/function (_elementorModules$fro) {
       var lottieSettings = this.getLottieSettings();
 
       if ('on_click' === lottieSettings.trigger && ((_lottieSettings$custo = lottieSettings.custom_link) === null || _lottieSettings$custo === void 0 ? void 0 : _lottieSettings$custo.url) && lottieSettings.link_timeout) {
-        this.elements.$containerLink.click(function (event) {
+        this.elements.$containerLink.on('click', function (event) {
           event.preventDefault();
 
           if (!_this5.isEdit) {
@@ -5691,7 +5691,7 @@ var _default = /*#__PURE__*/function (_elementorModules$fro) {
           var settings = _this2.getDocumentSettings(),
               id = _this2.getSettings('id'),
               triggerPopupEvent = function triggerPopupEvent(eventType) {
-            return elementorFrontend.elements.$document.trigger('elementor/popup/' + eventType, id, _this2);
+            return elementorFrontend.elements.$document.trigger('elementor/popup/' + eventType, [id, _this2]);
           };
 
           var classes = 'elementor-popup-modal';
@@ -8686,7 +8686,7 @@ var TOCHandler = /*#__PURE__*/function (_elementorModules$fro) {
       }
 
       if (elementSettings.collapse_subitems) {
-        this.elements.$listItems.hover(function (event) {
+        this.elements.$listItems.on('hover', function (event) {
           return jQuery(event.target).slideToggle();
         });
       }
@@ -9040,7 +9040,7 @@ var TOCHandler = /*#__PURE__*/function (_elementorModules$fro) {
       (_get2 = (0, _get3.default)((0, _getPrototypeOf2.default)(TOCHandler.prototype), "onInit", this)).call.apply(_get2, [this].concat(args));
 
       this.viewportItems = [];
-      jQuery(document).ready(function () {
+      jQuery(function () {
         return _this7.run();
       });
     }
@@ -9319,7 +9319,7 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       // Activate full-screen mode on click
       self.elements.$toggle.on('click', function () {
         $container.toggleClass(classes.isFullScreen).toggleClass(classes.lightbox);
-        $input.focus();
+        $input.trigger('focus');
       }); // Deactivate full-screen mode on click or on esc.
 
       $container.on('click', function (event) {
@@ -9330,12 +9330,12 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       $closeButton.on('click', function () {
         $container.removeClass(classes.isFullScreen).removeClass(classes.lightbox);
       });
-      elementorFrontend.elements.$document.keyup(function (event) {
+      elementorFrontend.elements.$document.on('keyup', function (event) {
         var ESC_KEY = 27;
 
         if (ESC_KEY === event.keyCode) {
           if ($container.hasClass(classes.isFullScreen)) {
-            $container.click();
+            $container.trigger('click');
           }
         }
       });
@@ -9355,7 +9355,7 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       // Apply focus style on wrapper element when icon is clicked in minimal skin
       $icon.on('click', function () {
         $wrapper.addClass(classes.isFocus);
-        $input.focus();
+        $input.trigger('focus');
       });
     }
   }
@@ -9528,12 +9528,12 @@ var _default = elementorModules.frontend.handlers.Base.extend({
     $closeButton.on('click', function () {
       _this.removeAttributesOnHide();
     });
-    elementorFrontend.elements.$document.keyup(function (event) {
+    elementorFrontend.elements.$document.on('keyup', function (event) {
       var ESC_KEY = 27;
 
       if (ESC_KEY === event.keyCode) {
         if ($container.hasClass(classes.isShown)) {
-          $container.click();
+          $container.trigger('click');
         }
       }
     });

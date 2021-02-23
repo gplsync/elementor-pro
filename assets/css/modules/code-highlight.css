@@ -1,6 +1,7 @@
 /* PrismJS 1.23.0
 https://prismjs.com/download.html#themes=prism-twilight&prism-tomorrow&prism-solarizedlightt&prism-okaidia&prism-dark&prism-solid&prism-copt-to-clipboard */
 /* Replacing pre[class*=language-] { margin:.5em 0 } to: margin: 0 , word wrap */
+/* Replacing .prismjs-twilight pre[data-line] {padding:1em 0 1em 3em;} to: {padding:1em;}*/
 .prismjs-dark code[class*=language-], .prismjs-dark pre[class*=language-] {
   color: #fff;
   background: 0 0;
@@ -461,7 +462,7 @@ https://prismjs.com/download.html#themes=prism-twilight&prism-tomorrow&prism-sol
   cursor: help; }
 
 .prismjs-twilight pre[data-line] {
-  padding: 1em 0 1em 3em;
+  padding: 1em;
   position: relative; }
 
 .prismjs-twilight .language-markup .token.attr-name, .prismjs-twilight .language-markup .token.punctuation, .prismjs-twilight .language-markup .token.tag {
@@ -557,8 +558,23 @@ https://prismjs.com/download.html#themes=prism-twilight&prism-tomorrow&prism-sol
 :not(.copy-to-clipboard) > div.code-toolbar > .toolbar {
   display: none; }
 
-.word-wrap code[class*="language-"], .word-wrap pre[class*="language-"] {
+.word-wrap code[class*="language-"],
+.word-wrap pre[class*="language-"] {
   white-space: pre-wrap !important; }
+
+.elementor-widget-code-highlight pre {
+  direction: ltr; }
+
+/* Overriding padding for pre tag when line-numbers off and highlight-line on*/
+.prismjs-twilight pre:not([data-line=""]):not(.line-numbers) {
+  padding: 0.8em 0 1em 2em; }
+
+.prismjs-tomorrow pre:not([data-line=""]):not(.line-numbers),
+.prismjs-solarizedlight pre:not([data-line=""]):not(.line-numbers),
+.prismjs-okaidia pre:not([data-line=""]):not(.line-numbers),
+.prismjs-dark pre:not([data-line=""]):not(.line-numbers),
+.prismjs-default pre:not([data-line=""]):not(.line-numbers) {
+  padding: 1em 0 1em 2em; }
 
 /* PrismJS 1.23.0 */
 pre[data-line] {

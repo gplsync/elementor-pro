@@ -30,7 +30,7 @@ class API {
 	 */
 	private static function remote_post( $body_args = [] ) {
 	
-	return array(
+    return array(
 			'license' => 'valid',
 			'payment_id' => '10',
 			'license_limit' => '100',
@@ -40,7 +40,6 @@ class API {
 			'subscriptions' => 'enable',
 			'success' => true,
 			'renewal_discount' => 1);
-			
 			
 			
 		$body_args = wp_parse_args(
@@ -117,8 +116,8 @@ class API {
 	}
 
 	public static function set_license_data( $license_data, $expiration = null ) {
-		
 		$expiration = '+12 hours';
+
 		self::set_transient( Admin::LICENSE_DATA_OPTION_NAME, $license_data, $expiration );
 	}
 
@@ -190,7 +189,7 @@ class API {
 
 			$info_data = self::remote_post( $body_args );
 
-			self::set_transient( $cache_key, $info_data, 12 * HOUR_IN_SECONDS );
+			self::set_transient( $cache_key, $info_data );
 		}
 
 		return $info_data;

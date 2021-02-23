@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["lottie"],{
 
 /***/ "../modules/lottie/assets/js/frontend/handler.js":
@@ -477,7 +477,7 @@ var lottieHandler = /*#__PURE__*/function (_elementorModules$fro) {
       var lottieSettings = this.getLottieSettings();
 
       if ('on_click' === lottieSettings.trigger && ((_lottieSettings$custo = lottieSettings.custom_link) === null || _lottieSettings$custo === void 0 ? void 0 : _lottieSettings$custo.url) && lottieSettings.link_timeout) {
-        this.elements.$containerLink.click(function (event) {
+        this.elements.$containerLink.on('click', function (event) {
           event.preventDefault();
 
           if (!_this5.isEdit) {
@@ -888,4 +888,4 @@ exports.default = lottieHandler;
 /***/ })
 
 }]);
-//# sourceMappingURL=lottie.e98d89812034d54404b0.bundle.js.map
+//# sourceMappingURL=lottie.742f4469ba922d17ef1d.bundle.js.map

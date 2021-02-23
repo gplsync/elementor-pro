@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -2987,7 +2987,7 @@ var CustomAssetsBase = /*#__PURE__*/function (_elementorModules$Vie) {
 
       if (hasValue) {
         this.fileWasUploaded = true;
-        this.elements.$postForm.submit();
+        this.elements.$postForm.trigger('submit');
         return;
       }
 
@@ -3179,7 +3179,7 @@ var CustomIcons = /*#__PURE__*/function (_CustomAssetsBase) {
     key: "enqueueCSS",
     value: function enqueueCSS(url) {
       if (!elementorCommon.elements.$document.find('link[href="' + url + '"]').length) {
-        elementorCommon.elements.$document.find('link:last').after('<link href="' + url + '" rel="stylesheet" type="text/css">');
+        elementorCommon.elements.$document.find('link').last().after('<link href="' + url + '" rel="stylesheet" type="text/css">');
       }
     }
   }, {
@@ -3287,7 +3287,7 @@ var CustomIcons = /*#__PURE__*/function (_CustomAssetsBase) {
 
       this.fileWasUploaded = true; // Flag to prevent infinite loop in the handleSubmit() method
 
-      $publishButton.click();
+      $publishButton.trigger('click');
     }
   }, {
     key: "onInit",
@@ -3513,7 +3513,7 @@ var CustomFontsManager = /*#__PURE__*/function (_CustomAssetsBase) {
       var selectors = this.getSettings('selectors');
 
       if (jQuery(this).is(':visible') && !jQuery(event.target).hasClass(selectors.editRowBtn)) {
-        jQuery(this).find(selectors.editRowBtn).click();
+        jQuery(this).find(selectors.editRowBtn).trigger('click');
       }
     }
   }, {
@@ -3681,7 +3681,7 @@ var DropZoneField = /*#__PURE__*/function (_elementorModules$Vie) {
           drag = _this$getSettings.drag;
 
       $browseButton.on('click', function () {
-        return $input.click();
+        return $input.trigger('click');
       });
       $dropZone.on('drag dragstart dragend dragover dragenter dragleave drop', function (event) {
         event.preventDefault();
@@ -4120,7 +4120,7 @@ module.exports = {
     var $element = jQuery(event.target);
 
     if ('text' === $element.attr('type')) {
-      return $element.next().removeClass(this.selectors.clearBtnClass).addClass(this.selectors.uploadBtnClass).click();
+      return $element.next().removeClass(this.selectors.clearBtnClass).addClass(this.selectors.uploadBtnClass).trigger('click');
     }
 
     this.$btn = $element;
@@ -4658,7 +4658,7 @@ module.exports = function () {
   var run = function run() {
     setElements();
     setLocationFieldVisibility();
-    elements.$templateTypeInput.change(setLocationFieldVisibility);
+    elements.$templateTypeInput.on('change', setLocationFieldVisibility);
   };
 
   this.init = function () {

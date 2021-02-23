@@ -5,7 +5,7 @@
  * Plugin URI: https://elementor.com/
  * GitHub Plugin URI: https://github.com/gplsync/elementor-pro/
  * Author: Elementor.com
- * Version: 3.1.0
+ * Version: 3.1.1
  * Elementor tested up to: 3.1.0
  * Author URI: https://elementor.com/
  *
@@ -16,7 +16,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly.
 }
 
-define( 'ELEMENTOR_PRO_VERSION', '3.1.0' );
+define( 'ELEMENTOR_PRO_VERSION', '3.1.1' );
 define( 'ELEMENTOR_PRO_PREVIOUS_STABLE_VERSION', '3.0.10' );
 
 define( 'ELEMENTOR_PRO__FILE__', __FILE__ );

@@ -496,6 +496,12 @@ class Table_Of_Contents extends Base_Widget {
 				'label' => __( 'Max Height', 'elementor-pro' ),
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'vh' ],
+				'range' => [
+					'px' => [
+						'min' => 0,
+						'max' => 1000,
+					],
+				],
 				'selectors' => [
 					'{{WRAPPER}}' => '--toc-body-max-height: {{SIZE}}{{UNIT}}',
 				],

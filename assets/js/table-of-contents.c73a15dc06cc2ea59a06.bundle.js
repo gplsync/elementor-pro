@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["table-of-contents"],{
 
 /***/ "../modules/table-of-contents/assets/js/frontend/handlers/table-of-contents.js":
@@ -126,7 +126,7 @@ var TOCHandler = /*#__PURE__*/function (_elementorModules$fro) {
       }
 
       if (elementSettings.collapse_subitems) {
-        this.elements.$listItems.hover(function (event) {
+        this.elements.$listItems.on('hover', function (event) {
           return jQuery(event.target).slideToggle();
         });
       }
@@ -480,7 +480,7 @@ var TOCHandler = /*#__PURE__*/function (_elementorModules$fro) {
       (_get2 = (0, _get3.default)((0, _getPrototypeOf2.default)(TOCHandler.prototype), "onInit", this)).call.apply(_get2, [this].concat(args));
 
       this.viewportItems = [];
-      jQuery(document).ready(function () {
+      jQuery(function () {
         return _this7.run();
       });
     }
@@ -566,4 +566,4 @@ __webpack_require__(/*! ./_string-html */ "../node_modules/core-js/modules/_stri
 /***/ })
 
 }]);
-//# sourceMappingURL=table-of-contents.b6d30918ee290abdc725.bundle.js.map
+//# sourceMappingURL=table-of-contents.c73a15dc06cc2ea59a06.bundle.js.map

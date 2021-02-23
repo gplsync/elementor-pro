@@ -1198,8 +1198,12 @@ span.font-variations-count {
 .post-conditions .eps-modal {
   position: relative;
   background: #f1f3f5;
-  min-width: 1200px;
-  min-height: 800px; }
+  max-width: 1200px;
+  max-height: 800px;
+  width: 90%;
+  height: 90%;
+  min-height: 800px;
+  min-width: 860px; }
   .post-conditions .eps-modal .eps-h1 {
     font-size: 30px;
     font-weight: 300; }
@@ -1238,7 +1242,7 @@ span.font-variations-count {
     padding-top: 60px; }
   .post-conditions .eps-modal .e-site-editor-conditions__rows {
     overflow-y: auto;
-    max-height: 30vh;
+    max-height: 27vh;
     margin: 0 auto; }
     .post-conditions .eps-modal .e-site-editor-conditions__rows:empty {
       margin-bottom: 30px; }

@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -3760,11 +3760,11 @@ module.exports = elementorModules.Module.extend({
       },
       success: function success(data) {
         if (data.font_face) {
-          elementor.$previewContents.find('style:last').after('<style type="text/css">' + data.font_face + '</style>');
+          elementor.$previewContents.find('style').last().after('<style type="text/css">' + data.font_face + '</style>');
         }
 
         if (data.font_url) {
-          elementor.$previewContents.find('link:last').after('<link href="' + data.font_url + '" rel="stylesheet" type="text/css">');
+          elementor.$previewContents.find('link').last().after('<link href="' + data.font_url + '" rel="stylesheet" type="text/css">');
         }
       }
     });
@@ -4538,7 +4538,7 @@ var FormFieldsSanitizeCustomId = /*#__PURE__*/function (_$e$modules$hookData$) {
             return 'custom_id' === view.model.get('name');
           });
           idView.render();
-          idView.$el.find('input').focus();
+          idView.$el.find('input').trigger('focus');
         }); // Hook-Break.
 
         return false;

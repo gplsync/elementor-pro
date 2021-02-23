@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["elements-handlers"],{
 
 /***/ "../node_modules/@babel/runtime-corejs2/core-js/object/define-properties.js":
@@ -835,7 +835,7 @@ var _default = /*#__PURE__*/function (_elementorModules$fro) {
           var settings = _this2.getDocumentSettings(),
               id = _this2.getSettings('id'),
               triggerPopupEvent = function triggerPopupEvent(eventType) {
-            return elementorFrontend.elements.$document.trigger('elementor/popup/' + eventType, id, _this2);
+            return elementorFrontend.elements.$document.trigger('elementor/popup/' + eventType, [id, _this2]);
           };
 
           var classes = 'elementor-popup-modal';

@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["form"],{
 
 /***/ "../node_modules/@babel/runtime-corejs2/core-js/parse-int.js":
@@ -1098,7 +1098,7 @@ var FormSteps = /*#__PURE__*/function (_elementorModules$fro) {
           classes = _this$getSettings16.classes;
 
       this.elements.$stepWrapper.eq(this.state.currentStep).addClass(classes.hidden);
-      this.elements.$stepWrapper.eq(index).removeClass(classes.hidden).children(this.getSettings('selectors.fieldGroup')).first().find(':input').first().focus();
+      this.elements.$stepWrapper.eq(index).removeClass(classes.hidden).children(this.getSettings('selectors.fieldGroup')).first().find(':input').first().trigger('focus');
     }
   }, {
     key: "isFieldsValid",
@@ -1148,7 +1148,7 @@ var FormSteps = /*#__PURE__*/function (_elementorModules$fro) {
         return classes.indicator + '--state-' + state;
       });
 
-      this.elements.$indicators.removeClass(stateClasses.join(' ')).not(':eq(0)').addClass(classes.indicatorInactive);
+      this.elements.$indicators.removeClass(stateClasses.join(' ')).not(this.elements.$indicators.eq(0)).addClass(classes.indicatorInactive);
       this.elements.$indicators.eq(0).addClass(classes.indicatorActive);
     }
   }, {
@@ -1405,7 +1405,7 @@ var Recaptcha = /*#__PURE__*/function (_elementorModules$fro) {
             $form.append(_this2.elements.$recaptchaResponse);
           }
 
-          $form.submit();
+          $form.trigger('submit');
         });
       });
     }
@@ -1590,4 +1590,4 @@ __webpack_require__(/*! ./_add-to-unscopables */ "../node_modules/core-js/module
 /***/ })
 
 }]);
-//# sourceMappingURL=form.7b8b0e25d066322571d3.bundle.js.map
+//# sourceMappingURL=form.890758b5f6f66d5a2727.bundle.js.map

@@ -1,4 +1,4 @@
-/*! elementor-pro - v3.1.0 - 14-02-2021 */
+/*! elementor-pro - v3.1.1 - 23-02-2021 */
 (self["webpackChunkelementor_pro"] = self["webpackChunkelementor_pro"] || []).push([["search-form"],{
 
 /***/ "../modules/theme-elements/assets/js/frontend/handlers/search-form.js":
@@ -65,7 +65,7 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       // Activate full-screen mode on click
       self.elements.$toggle.on('click', function () {
         $container.toggleClass(classes.isFullScreen).toggleClass(classes.lightbox);
-        $input.focus();
+        $input.trigger('focus');
       }); // Deactivate full-screen mode on click or on esc.
 
       $container.on('click', function (event) {
@@ -76,12 +76,12 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       $closeButton.on('click', function () {
         $container.removeClass(classes.isFullScreen).removeClass(classes.lightbox);
       });
-      elementorFrontend.elements.$document.keyup(function (event) {
+      elementorFrontend.elements.$document.on('keyup', function (event) {
         var ESC_KEY = 27;
 
         if (ESC_KEY === event.keyCode) {
           if ($container.hasClass(classes.isFullScreen)) {
-            $container.click();
+            $container.trigger('click');
           }
         }
       });
@@ -101,7 +101,7 @@ var _default = elementorModules.frontend.handlers.Base.extend({
       // Apply focus style on wrapper element when icon is clicked in minimal skin
       $icon.on('click', function () {
         $wrapper.addClass(classes.isFocus);
-        $input.focus();
+        $input.trigger('focus');
       });
     }
   }
@@ -112,4 +112,4 @@ exports.default = _default;
 /***/ })
 
 }]);
-//# sourceMappingURL=search-form.3a9594b565e888bd1c56.bundle.js.map
+//# sourceMappingURL=search-form.d3512be4aee1d4294a3f.bundle.js.map

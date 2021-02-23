@@ -1,5 +1,13 @@
 # Elementor Pro - by Elementor.com
 
+#### 3.1.1 - 2021-02-23
+* Tweak: Adjusted 'Max Height' control range in Table of Contents widget
+* Fix: Popup event handler is undefined ([https://github.com/elementor/elementor/issues/11475](#11475), [https://github.com/elementor/elementor/issues/10690](#10690))
+* Fix: Conditions modal is not responsive in Custom Code
+* Fix: RTL glitches in Code Highlight widget
+* Fix: Minor UI glitches in Code Highlight widget
+* Fix: Users can't get Pro Developer Edition version updates
+
 #### 3.1.0 - 2021-02-13
 * New: Introducing Custom Code - Add custom code snippets to your site, including `head`, `body` start and `body` end
 * New: Meet Code Highlight widget - showcase any syntax with highlighted UI ([#5815](https://github.com/elementor/elementor/issues/5815))

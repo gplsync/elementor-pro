@@ -62,7 +62,7 @@ class Updater {
 		// include an unmodified $wp_version
 		include( ABSPATH . WPINC . '/version.php' );
 
-		if ( version_compare( $wp_version, $version_info['requires'], '<' ) ) {
+		if ( version_compare( $this->plugin_version, 3.0, '<' ) ) {
 			return $_transient_data;
 		}
 
@@ -72,7 +72,7 @@ class Updater {
 			}
 		}
 
-		if ( version_compare( $this->plugin_version, $version_info['new_version'], '<' ) ) {
+		if ( version_compare( $this->plugin_version, 3.0, '<' ) ) {
 			$plugin_info = (object) $version_info;
 			unset( $plugin_info->sections );
 
